@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 using namespace std;
 typedef int** brd;
 
@@ -8,11 +9,11 @@ new int[9]{1,2,3,4,5,6,7,8,9},
 new int[9]{2,3,4,5,6,7,8,9,1},
 new int[9]{3,4,5,6,7,8,9,1,2},
 new int[9]{4,5,6,7,8,9,1,2,3},
-new int[9]{5,6,7,8,9,1,2,3,4},
+new int[9]{5,6,0,8,9,1,2,3,4},
 new int[9]{6,7,8,9,1,2,3,4,5},
 new int[9]{7,8,9,1,2,3,4,5,6},
 new int[9]{8,9,1,2,3,4,5,6,7},
-new int[9]{9,1,2,3,4,5,6,7,8}
+new int[9]{9,1,2,3,4,0,6,7,8}
 };
 void printBoard(brd board){
     for(int i = 0;i<9;i++){
@@ -58,8 +59,12 @@ bool checkBoard (brd board);
 
 int main(){    
 
+    srand(time(0));
+
+    // solveBoard(example);
+    // return 1; //test statement
     
-    int** board = new int*[9];
+    int** board = new int*[9]; 
     for(int i = 0;i<9;i++){
         board[i]=new int[9];
     }
@@ -114,6 +119,8 @@ brd fillBoard (brd board){
         ret[i]=new int[9];
     }
 
+
+
     for(int i =0;i<9;i++){
         int* temp = new int[10];
         for (int j = 0;j<9;j++){
@@ -153,15 +160,18 @@ bool checkBoard (brd board){
     //         return false;
     //     }
     // }
-    printBoard(board);
+    //printBoard(board);
     for(int i = 0 ;i<9;i++){
         prod = 1*2*3*4*5*6*7*8*9;
         for(int j = 0; j<9;j++){
             //pause();
-            cout<<"board: "<<board[j][i]<<endl;
+            //cout<<"board: "<<board[j][i]<<endl;
             if(board[j][i]!=0){
                 prod = prod / board[j][i];
-                cout<<"prod: "<<prod<<endl;
+                //cout<<"prod: "<<prod<<endl;
+            }
+            if(prod - static_cast<int>(prod)>0.05){
+                break;
             }
         }
         if (prod!=1){
@@ -178,8 +188,8 @@ bool checkBoard (brd board){
 
 brd solveBoard (brd board){
     brd temp = fillBoard(board);
-    cout<<"The boarding being passed in is: "<<endl;
-    printBoard(temp);
+    //cout<<"The boarding being passed in is: "<<endl;
+    //printBoard(temp);
     int iter = 1;
     while(!checkBoard(temp)){
         iter++;
