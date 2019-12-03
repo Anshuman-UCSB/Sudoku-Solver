@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cmath>
+#include <cstdlib>
 using namespace std;
 typedef int** brd;
 
@@ -157,10 +157,11 @@ bool checkBoard (brd board){
     for(int i = 0 ;i<9;i++){
         prod = 1*2*3*4*5*6*7*8*9;
         for(int j = 0; j<9;j++){
-            pause();
+            //pause();
             cout<<"board: "<<board[j][i]<<endl;
             if(board[j][i]!=0){
                 prod = prod / board[j][i];
+                cout<<"prod: "<<prod<<endl;
             }
         }
         if (prod!=1){
@@ -177,11 +178,13 @@ bool checkBoard (brd board){
 
 brd solveBoard (brd board){
     brd temp = fillBoard(board);
-    //printBoard(temp);
+    cout<<"The boarding being passed in is: "<<endl;
+    printBoard(temp);
     int iter = 1;
-    while(!checkBoard(board)){
+    while(!checkBoard(temp)){
         iter++;
         temp = fillBoard(board);
+        
     }
     cout<<"\nSolved board with "<<iter<<" tries."<<endl;
     return temp;

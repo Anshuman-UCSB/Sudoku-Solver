@@ -1,6 +1,2 @@
-sudoku: sudoku.o
-	
-	g++ sudoku.o -o sudoku
-
-all:
-	./sudoku
+sudoku: sudoku.o	
+	g++ -std=c++11 sudoku.o -o sudoku
